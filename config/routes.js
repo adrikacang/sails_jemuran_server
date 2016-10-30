@@ -38,7 +38,9 @@ module.exports.routes = {
 
   'POST /seed': 'ServerController.seed',
   'POST /store_status': 'ServerController.store_status',
-  'POST /store_forecast': 'ServerController.store_forecast'
+  'POST /store_forecast': 'ServerController.store_forecast',
+  'POST /fetch_status': 'ServerController.fetch_status',
+  'POST /fetch_forecast': 'ServerController.fetch_forecast'
 
   /***************************************************************************
   *                                                                          *

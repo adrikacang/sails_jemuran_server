@@ -88,8 +88,14 @@ module.exports.connections = {
     user: 'postgres',
     password: 'password',
     database: 'luthfi_db'
-  }
+  },
 
+  herokuPostgre: {
+    adapter: 'sails-postgresql',
+    url: process.env.DATABASE_URL,
+    pool: false,
+    ssl: true
+  }
 
   /***************************************************************************
   *                                                                          *

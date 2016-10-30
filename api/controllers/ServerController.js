@@ -25,5 +25,21 @@ module.exports = {
 			if (err) {res.serverError(err);}
 			res.json({notification: 'Forecast data has been updated. \n DATA : \n ' + req.body.forecast });
 		});
+	},
+	fetch_status: function(req, res){
+		Data.findOne({category: "status"}).exec(function (err, finn){
+			if (err) {
+				return res.serverError(err);
+			}
+			return res.json(finn.content);
+		});
+	},
+	fetch_forecast: function(req, res){
+		Data.findOne({category: "forecast"}).exec(function (err, finn){
+			if (err){
+				return res.serverError(err);
+			}
+			return res.json(finn.content);
+		});
 	}
 };
