@@ -22,7 +22,8 @@ module.exports = {
   // },
 
   models: {
-    connection: 'herokuPostgre'
+    connection: 'herokuPostgre',
+    ssl: true
   }
 
   /***************************************************************************
