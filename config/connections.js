@@ -92,7 +92,7 @@ module.exports.connections = {
 
   herokuPostgre: {
     adapter: 'sails-postgresql',
-    url: process.env.DATABASE_URL,
+    url: process.env.HEROKU_POSTGRESQL_TEAL_URL,
     pool: false,
     ssl: true
   }
