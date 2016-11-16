@@ -31,7 +31,7 @@ module.exports = {
 			if (err) {
 				return res.serverError(err);
 			}
-			return res.json(finn.content);
+			return res.json({status: finn.content});
 		});
 	},
 	fetch_forecast: function(req, res){
@@ -39,7 +39,7 @@ module.exports = {
 			if (err){
 				return res.serverError(err);
 			}
-			return res.json(finn.content);
+			return res.json({forecast: finn.content});
 		});
 	}
 };
