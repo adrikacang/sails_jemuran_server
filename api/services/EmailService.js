@@ -15,6 +15,7 @@ module.exports = {
 		User.find({notification: true}).exec(function(err, users) {
 			if (err){
 				console.log("There are no users to be notified");
+        console.log(err);
 			}else{
 				try{
 					users.forEach(function(user){
@@ -29,13 +30,16 @@ module.exports = {
 							transporter.sendMail(mailOptions, function(error, info){
 								if (error){
 									console.log("Message to " + user.email +" error");
+                  console.log(error);
 								}else{
 									console.log("Email to " + user.email + " successful");
+                  console.log(error);
 								}
 							});
 					});
 				}catch(error){
 					  console.log("Error happened in sending process");
+            console.log(error);
 				}
 			}
 		});
