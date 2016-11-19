@@ -16,36 +16,42 @@ module.exports = {
 	},
 	store_status: function(req, res) {
 		Data.update({category: 'status'}, {content: req.body.status}).exec(function (err, updated){
-			if (err) {res.serverError(err);}
-			res.json({notification: 'Status has been updated to ' + req.body.status});
+			if (err) {res.json({error: true});}
+			else {
+				res.json({notification: 'Status has been updated to ' + req.body.status});
+			}
 		});
 	},
 	store_forecast: function(req,res){
 		Data.update({category: 'forecast'}, {content: req.body.forecast}).exec(function (err, updated){
-			if (err) {res.serverError(err);}
-			res.json({notification: 'Forecast data has been updated. \n DATA : \n ' + req.body.forecast });
+			if (err) {res.json({error: true});}
+			else{
+				res.json({notification: 'Forecast data has been updated. \n DATA : \n ' + req.body.forecast });
+			}
 		});
 	},
 	fetch_status: function(req, res){
 		Data.findOne({category: "status"}).exec(function (err, finn){
 			if (err) {
-				return res.serverError(err);
+				return res.json({error: true});
+			}else {
+				return res.json({
+					status: finn.content,
+					error: false
+				});
 			}
-			return res.json({
-				status: finn.content,
-				error: false
-			});
 		});
 	},
 	fetch_forecast: function(req, res){
 		Data.findOne({category: "forecast"}).exec(function (err, finn){
 			if (err){
-				return res.serverError(err);
+				return res.json({error: true});
+			} else {
+				return res.json({
+					forecast: finn.content,
+					error: false
+				});
 			}
-			return res.json({
-				forecast: finn.content,
-				error: false
-			});
 		});
 	}
 };
