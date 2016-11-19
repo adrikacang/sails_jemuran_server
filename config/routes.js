@@ -40,7 +40,9 @@ module.exports.routes = {
   'POST /store_status': 'ServerController.store_status',
   'POST /store_forecast': 'ServerController.store_forecast',
   'POST /fetch_status': 'ServerController.fetch_status',
-  'POST /fetch_forecast': 'ServerController.fetch_forecast'
+  'POST /fetch_forecast': 'ServerController.fetch_forecast',
+  'POST /register': 'ServerController.register',
+  'POST /set_notification': 'ServerController.set_notification'
 
   /***************************************************************************
   *                                                                          *

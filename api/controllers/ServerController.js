@@ -22,6 +22,7 @@ module.exports = {
 					notification: 'Status has been updated to ' + req.body.status,
 					error: false
 				});
+				EmailService.send_email(req, res, req.body.status);
 			}
 		});
 	},
@@ -56,6 +57,40 @@ module.exports = {
 				return res.json({
 					forecast: finn.content,
 					error: false
+				});
+			}
+		});
+	},
+	register: function(req, res){
+		User.create({nama: req.body.nama, email: req.body.email, notification: req.body.notification}).exec(
+			function(err, data){
+				if (err){
+					res.json({
+						error: true,
+						notification: "User has been registered before, try other email"
+					});
+					console.log(err);
+				}else{
+					res.json({
+						error: false,
+						notification: "User with name " + data.nama + " has been registered"
+					});
+				}
+			}
+		);
+	},
+	set_notification: function(req, res){
+		User.update({email: req.body.email}, {notification: req.body.notification}).exec( function(err, updated) {
+			console.dir(updated);
+			if (err){
+				res.json({
+					error: true,
+					notification: "There are no users with such email, try again"
+				});
+			}else{
+				res.json({
+					error: false,
+					notification: "User with name " + (updated[0]).nama + " has set it's notification to " + (updated[0]).notification
 				});
 			}
 		});
